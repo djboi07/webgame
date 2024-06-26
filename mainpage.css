@@ -32,17 +32,17 @@ body.dark-mode {
     transition: 1s;
     position:relative;
     margin-right: 10px;
-    
-    
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .game:hover {
     box-shadow: 0 12px 16px 0 rgb(0, 0, 0), 0 17px 50px 0 rgb(255, 255, 255)   
 }
 
-.col{
-    vertical-align: middle;
+.gamebox{
+    max-width: 800px;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin: auto;
 }
 
