@@ -23,3 +23,4 @@ const buttons = [
             document.getElementById("navicon2").style.backgroundColor='white';
         });
     }
+    
