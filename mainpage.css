@@ -4,9 +4,12 @@ h1{
     font-weight:bold;
     font-size: 40px;
 }
+body{
+    transition: 0.5s;
+}
 .navicons{
-    transition: 1s;
-    background-color: white;
+    transition: 0.5s;
+    background-color:white;
     margin-left: 10px;
 }
 .game{
@@ -23,7 +26,7 @@ h1{
     border-radius: 20px;
 }
 .game:hover {
-    box-shadow: 0 12px 16px 0 rgb(0, 0, 0), 0 17px 50px 0 rgb(255, 255, 255)   
+    box-shadow: 0 12px 16px 0 black, 0 17px 25px 0 black   
 }
 .gamebox{
     max-width: 800px;
