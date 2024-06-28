@@ -1,4 +1,3 @@
-
 const buttons = [
         { id: 'game1', hoverColor: 'rgba(255, 0, 144,1)' },
         { id: 'game2', hoverColor: 'rgba(0,255,0,1)' },
@@ -23,4 +22,3 @@ const buttons = [
             document.getElementById("navicon2").style.backgroundColor='white';
         });
     }
-    
