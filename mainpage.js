@@ -14,8 +14,12 @@ const buttons = [
         const buttonElement= document.getElementById(btn.id);
         buttonElement.addEventListener("mouseover", function() {
             document.body.style.backgroundColor=btn.hoverColor;
+            document.getElementById("navicon1").style.backgroundColor=btn.hoverColor;
+            document.getElementById("navicon2").style.backgroundColor=btn.hoverColor;
         });
         buttonElement.addEventListener("mouseleave", function() {
             document.body.style.backgroundColor='';
+            document.getElementById("navicon1").style.backgroundColor='';
+            document.getElementById("navicon2").style.backgroundColor='';
         });
     }
