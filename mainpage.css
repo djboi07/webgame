@@ -1,36 +1,18 @@
-@font-face {
-    font-family: gamefont;
-    src: url("files/gamefont.ttf");
-  }
-
 h1{
     text-align: center;
     font-family:gaemfont;
     font-weight:bold;
     font-size: 40px;
 }
-
-body {
-    transition: background-color 5s, color 0.5s;
-    background-size: cover;
-}
-
-body.light-mode {
-    background-color: white;
-    color: black;
-}
-body.dark-mode {
-    background-color: black;
-    color: white;
-}
-
 .navicons{
     transition: 1s;
+    background-color: white;
+    margin-left: 10px;
 }
 .game{
     width:240px;
     height:120px;
-    text-align: center;
+    border: none;
     font-size: 16px;
     transition: 1s;
     position:relative;
@@ -38,12 +20,11 @@ body.dark-mode {
     margin-left: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 .game:hover {
     box-shadow: 0 12px 16px 0 rgb(0, 0, 0), 0 17px 50px 0 rgb(255, 255, 255)   
 }
-
 .gamebox{
     max-width: 800px;
     text-align: center;

@@ -19,7 +19,7 @@ const buttons = [
         });
         buttonElement.addEventListener("mouseleave", function() {
             document.body.style.backgroundColor='';
-            document.getElementById("navicon1").style.backgroundColor='';
-            document.getElementById("navicon2").style.backgroundColor='';
+            document.getElementById("navicon1").style.backgroundColor='white';
+            document.getElementById("navicon2").style.backgroundColor='white';
         });
     }
