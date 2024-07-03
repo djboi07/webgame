@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import Tictactoe from './components/Tictactoe';
+import Tictactoe from './components/tictactoe/Tictactoe';
 import './App.css';
 
 const buttons = [

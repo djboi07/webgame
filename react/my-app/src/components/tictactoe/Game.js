@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Tile from './Tile';
+import { State, Rstbtn } from './State';
 import Controls from './Controls';
 import './Game.css';
 
 const Game = () => {
   const [tiles, setTiles] = useState(Array(9).fill(''));
-  const [currentPlayer, setCurrentPlayer] = useState('X');
+  const [currentPlayer, setCurrentPlayer] = useState('O');
   const [winner, setWinner] = useState(null);
-
-  useEffect(() => {
-    if (currentPlayer === 'O' && !winner) {
-      const computerMoveTimeout = setTimeout(computerMove, 1000);
-      return () => clearTimeout(computerMoveTimeout);
-    }
-  }, [currentPlayer, winner]);
 
   const checkWinner = (tiles) => {
     const winningCombinations = [
@@ -30,23 +24,9 @@ const Game = () => {
     return null;
   };
 
-  const handleTileClick = (index) => {
-    if (tiles[index] || winner || currentPlayer === 'O') return;
-    const newTiles = tiles.slice();
-    newTiles[index] = currentPlayer;
-    setTiles(newTiles);
-    const gameWinner = checkWinner(newTiles);
-    if (gameWinner) {
-      setWinner(gameWinner);
-    } else {
-      setCurrentPlayer('O');
-    }
-  };
-
-  const computerMove = () => {
+  const computerMove = useCallback(() => {
     const availableMoves = tiles.map((tile, index) => tile === '' ? index : null).filter(index => index !== null);
     let move = null;
-
     for (let i of availableMoves) {
       const newTiles = [...tiles];
       newTiles[i] = 'O';
@@ -80,6 +60,26 @@ const Game = () => {
         setCurrentPlayer('X');
       }
     }
+  }, [tiles]);
+
+  useEffect(() => {
+    if (currentPlayer === 'O' && !winner) {
+      const computerMoveTimeout = setTimeout(computerMove, 1000);
+      return () => clearTimeout(computerMoveTimeout);
+    }
+  }, [currentPlayer, winner, computerMove]);
+
+  const handleTileClick = (index) => {
+    if (tiles[index] || winner || currentPlayer === 'O') return;
+    const newTiles = tiles.slice();
+    newTiles[index] = currentPlayer;
+    setTiles(newTiles);
+    const gameWinner = checkWinner(newTiles);
+    if (gameWinner) {
+      setWinner(gameWinner);
+    } else {
+      setCurrentPlayer('O');
+    }
   };
 
   const resetGame = () => {
@@ -89,13 +89,21 @@ const Game = () => {
   };
 
   return (
-    <div>
-      <Controls currentPlayer={currentPlayer} winner={winner} resetGame={resetGame} />
-      <div className="grid">
-        {tiles.map((value, index) => (
-          <Tile key={index} value={value} onClick={() => handleTileClick(index)} />
-        ))}
+    <div className='partition'>
+      <div className='left'>
+        <Controls/>
       </div>
+
+      <div className='center'>
+          <State currentPlayer={currentPlayer} winner={winner} />
+        <div className="grid">
+          {tiles.map((value, index) => (
+            <Tile key={index} value={value} onClick={() => handleTileClick(index)} />
+          ))}
+        </div>
+          <Rstbtn  resetGame={resetGame} />
+      </div>
+
     </div>
   );
 };

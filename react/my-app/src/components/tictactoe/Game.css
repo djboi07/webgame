@@ -3,5 +3,42 @@
     grid-template-columns: repeat(3, 100px);
     grid-gap: 10px;
     margin: 20px;
+    justify-content:center;
   }
-  
+
+.partition{
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Optional: to limit the width of the container */
+  padding: 0 20px;
+  }
+.left{ 
+  grid-column: 1 / 2;
+  justify-self: center;
+  }
+.center{
+  grid-column: 2 / 3;
+  justify-self: center;
+}
+
+@media (max-width: 768px) {
+  .partition {
+    display: block;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .left {
+    order: 1; /* Change order to move to bottom */
+    margin-right: 0; /* Reset margin */
+    margin-bottom: 20px; /* Optional: Space between left and center */
+  }
+
+  .center {
+    order: 2;
+    text-align: center;
+    justify-self: center; /* Align text to the left */
+  }
+}

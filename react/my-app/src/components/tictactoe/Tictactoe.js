@@ -1,12 +1,12 @@
 import React from 'react';
-import Game from './tictactoe/Game';
+import Game from './Game';
 import './Tictactoe.css';
 
 function Tictactoe() {
   return (
     <div className="Tictactoe">
       <h1>Tic Tac Toe</h1>
-      <Game />
+      <Game/>
     </div>
   );
 }
