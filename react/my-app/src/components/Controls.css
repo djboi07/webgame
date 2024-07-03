@@ -10,4 +10,8 @@
     font-size: 1em;
     cursor: pointer;
   }
-  
+  .reset {
+    background-color: #1f505e;
+    border:5px solid #000000;
+    color: white;
+  }

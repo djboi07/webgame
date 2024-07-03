@@ -47,7 +47,6 @@ const Game = () => {
     const availableMoves = tiles.map((tile, index) => tile === '' ? index : null).filter(index => index !== null);
     let move = null;
 
-    // Check if computer can win in the next move
     for (let i of availableMoves) {
       const newTiles = [...tiles];
       newTiles[i] = 'O';
@@ -56,8 +55,6 @@ const Game = () => {
         break;
       }
     }
-
-    // Block user's winning move
     if (move === null) {
       for (let i of availableMoves) {
         const newTiles = [...tiles];
@@ -68,8 +65,6 @@ const Game = () => {
         }
       }
     }
-
-    // Pick a random move if no immediate win or block
     if (move === null && availableMoves.length > 0) {
       move = availableMoves[Math.floor(Math.random() * availableMoves.length)];
     }
