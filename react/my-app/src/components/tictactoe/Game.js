@@ -30,24 +30,27 @@ const Game = () => {
   const computerMove = useCallback(() => {
     const availableMoves = tiles.map((tile, index) => tile === '' ? index : null).filter(index => index !== null);
     let move = null;
-    for (let i of availableMoves) {
-      const newTiles = [...tiles];
-      newTiles[i] = 'O';
-      if (checkWinner(newTiles) === 'O') {
-        move = i;
-        break;
-      }
-    }
-    if (move === null) {
+    if (difficulty==='Hard'){
       for (let i of availableMoves) {
         const newTiles = [...tiles];
-        newTiles[i] = 'X';
-        if (checkWinner(newTiles) === 'X') {
+        newTiles[i] = 'O';
+        if (checkWinner(newTiles) === 'O') {
           move = i;
           break;
         }
       }
+      if (move === null) {
+        for (let i of availableMoves) {
+          const newTiles = [...tiles];
+          newTiles[i] = 'X';
+          if (checkWinner(newTiles) === 'X') {
+            move = i;
+            break;
+          }
+        }
+      }
     }
+
     if (move === null && availableMoves.length > 0) {
       move = availableMoves[Math.floor(Math.random() * availableMoves.length)];
     }
@@ -63,7 +66,7 @@ const Game = () => {
         setCurrentPlayer('X');
       }
     }
-  }, [tiles]);
+  }, [tiles,difficulty]);
 
   useEffect(()=>{
     if (start === 'Computer'){
@@ -73,8 +76,8 @@ const Game = () => {
     }
   },[start]);
   
-  const timings = [1000,2000,1500,500]
   useEffect(() => {
+    const timings = [1000,2000,1500,500]
     if (currentPlayer === 'O' && !winner) {
       const computerMoveTimeout = setTimeout(computerMove, timings[Math.floor(Math.random()*4)]);
       return () => clearTimeout(computerMoveTimeout);

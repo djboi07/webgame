@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Controls.css'
 export const ControlsDifficulty = ({setDifficulty,difficulty,setStart,start, resetGame}) => {
     const handleDifficultyClick = (level) => {
