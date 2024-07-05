@@ -7,18 +7,16 @@
   }
 
 .partition{
-  margin-top: 50px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  column-gap: 50px;
-  width: 100%;
-  min-height: auto;
+  column-gap: 10px;
+  width: 90%;
   max-width: 1300px; 
   padding: 0 20px;
   }
 .left{ 
   grid-column: 1 / 2;
-  justify-self:left;
+  justify-self:center;
   }
 .center{
   grid-column: 2 / 3;
@@ -27,7 +25,7 @@
 }
 .right{ 
   grid-column: 3 / 4;
-  justify-self: right;
+  justify-self: center;
   }
 
 @media (max-width: 768px) {

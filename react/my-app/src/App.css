@@ -3,6 +3,7 @@ h1{
     /* font-family:gamefont; */
     font-weight:800;
     font-size: 40px;
+    margin: 5px;
 }
 body{
     transition: 1s;
