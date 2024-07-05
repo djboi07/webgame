@@ -2,6 +2,7 @@ import React from 'react';
 import './State.css';
 
 export const State = ({ currentPlayer, winner}) => {
+ 
   return (
     <div className="state">
       {winner ? <h2>{winner} has won!</h2> : <h2>Current Player: {currentPlayer}</h2>}

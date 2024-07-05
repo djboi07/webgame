@@ -7,6 +7,7 @@ import './Game.css';
 const Game = () => {
   const [tiles, setTiles] = useState(Array(9).fill(''));
   const [currentPlayer, setCurrentPlayer] = useState('O');
+  const [player, setPlayer] = useState('Computer');
   const [winner, setWinner] = useState(null);
 
   const [difficulty, setDifficulty] = useState('Easy');
@@ -64,6 +65,7 @@ const Game = () => {
         setWinner(gameWinner);
       } else {
         setCurrentPlayer('X');
+        setPlayer('User');
       }
     }
   }, [tiles,difficulty]);
@@ -71,8 +73,10 @@ const Game = () => {
   useEffect(()=>{
     if (start === 'Computer'){
       setCurrentPlayer("O")
+      setPlayer('Computer');
     }else{
       setCurrentPlayer('X')
+      setPlayer('User');
     }
   },[start]);
   
@@ -94,15 +98,20 @@ const Game = () => {
       setWinner(gameWinner);
     } else {
       setCurrentPlayer('O');
+      setPlayer('Computer');
+
     }
   };
 
   const resetGame = () => {
     setTiles(Array(9).fill(''));
     if (start === 'Computer'){
-      setCurrentPlayer("O")
+      setCurrentPlayer("O");
+      setPlayer('Computer');
     }else{
-      setCurrentPlayer('X')
+      setCurrentPlayer('X');
+      setPlayer('User');
+
     }
     setWinner(null);
   };
@@ -116,7 +125,7 @@ const Game = () => {
           resetGame={resetGame} />
       </div>
       <div className='center'>
-          <State currentPlayer={currentPlayer} winner={winner} />
+          <State currentPlayer={player} winner={winner} />
         <div className="grid">
           {tiles.map((value, index) => (
             <Tile key={index} value={value} onClick={() => handleTileClick(index)} />
