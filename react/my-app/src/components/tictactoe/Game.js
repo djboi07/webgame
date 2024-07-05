@@ -61,13 +61,18 @@ const Game = () => {
       newTiles[move] = 'O';
       setTiles(newTiles);
       const gameWinner = checkWinner(newTiles);
+      // availableMoves = tiles.map((tile, index) => tile === '' ? index : null).filter(index => index !== null);
+      const moves=availableMoves.length;
       if (gameWinner) {
         setWinner(gameWinner);
-      } else {
+      } else if(moves===1){
+        setPlayer('draw');
+      }else {
         setCurrentPlayer('X');
         setPlayer('User');
       }
     }
+    
   }, [tiles,difficulty]);
 
   useEffect(()=>{
@@ -94,9 +99,16 @@ const Game = () => {
     newTiles[index] = currentPlayer;
     setTiles(newTiles);
     const gameWinner = checkWinner(newTiles);
+    const availableMoves = tiles.map((tile, index) => tile === '' ? index : null).filter(index => index !== null);
+    const moves=availableMoves.length;  
+    console.log(moves)  
     if (gameWinner) {
       setWinner(gameWinner);
-    } else {
+    }else if(moves===1){
+      setCurrentPlayer('O');
+      setPlayer('draw');
+
+    }else {
       setCurrentPlayer('O');
       setPlayer('Computer');
 

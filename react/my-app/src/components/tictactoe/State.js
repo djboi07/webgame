@@ -5,7 +5,7 @@ export const State = ({ currentPlayer, winner}) => {
  
   return (
     <div className="state">
-      {winner ? <h2>{winner} has won!</h2> : <h2>Current Player: {currentPlayer}</h2>}
+      {winner ? <h2>{winner} has won!</h2> : currentPlayer==='draw'?<h2>It is Draw</h2> : <h2>Current Player: {currentPlayer}</h2>}
     </div>
   );
 };
