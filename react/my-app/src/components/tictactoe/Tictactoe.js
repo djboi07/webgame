@@ -13,5 +13,4 @@ function Tictactoe() {
     </div>
   );
 }
-
 export default Tictactoe;
