@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Controls.css'
-const Controls = () => {
+export const ControlsDifficulty = ({setDifficulty,difficulty,setStart,start, resetGame}) => {
+    const handleDifficultyClick = (level) => {
+        setDifficulty(level);
+        resetGame();
+        };
+
     return(
     <div className='controls'>
-        <div>
-            <button>Easy</button>
-            <button>Hard</button>
-        </div>
-        <div>
-            <button>User</button>
-            <button>Computer</button>
-        </div>
+            <p>What Difficulty? </p>
+            <button onClick={() => handleDifficultyClick('Easy')}>Easy</button>
+            <button onClick={() => handleDifficultyClick('Hard')}>Hard</button>
+            <p>{difficulty}</p>
     </div>
     )
 }
-
-export default Controls
+export const ControlsStarting = ({setStart,start, resetGame}) => {
+    const handleStartClick = (starter) => {
+    setStart(starter);
+    resetGame();
+    };
+    return(
+    <div className='controls'>
+            <p>Who should Start? </p>
+            <button onClick={() => handleStartClick('User')}>User</button>
+            <button onClick={() => handleStartClick('Computer')}>Computer</button>
+            <p>{start}</p>
+    </div>
+    )
+}

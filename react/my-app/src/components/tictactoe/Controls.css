@@ -1,8 +1,17 @@
 .controls button{
+    font-size:large;
+    font-weight: 700;
     background-color: #1f505e;
-    border:5px solid #000000;
+    border:3px solid #000000;
     color: white;
-    width:100px;
-    height:50px;
+    width:150px;
+    height:75px;
     border-radius: 20px;
+    margin: 10px;
+}
+
+.controls p{
+    font-size: larger;
+    font-weight: 700;
+    margin: 10px;
 }

@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Tile from './Tile';
 import { State, Rstbtn } from './State';
-import Controls from './Controls';
+import {ControlsDifficulty,ControlsStarting} from './Controls';
 import './Game.css';
 
 const Game = () => {
   const [tiles, setTiles] = useState(Array(9).fill(''));
   const [currentPlayer, setCurrentPlayer] = useState('O');
   const [winner, setWinner] = useState(null);
+
+  const [difficulty, setDifficulty] = useState('Easy');
+  const [start, setStart] = useState('User');
 
   const checkWinner = (tiles) => {
     const winningCombinations = [
@@ -62,9 +65,18 @@ const Game = () => {
     }
   }, [tiles]);
 
+  useEffect(()=>{
+    if (start === 'Computer'){
+      setCurrentPlayer("O")
+    }else{
+      setCurrentPlayer('X')
+    }
+  },[start]);
+  
+  const timings = [1000,2000,1500,500]
   useEffect(() => {
     if (currentPlayer === 'O' && !winner) {
-      const computerMoveTimeout = setTimeout(computerMove, 1000);
+      const computerMoveTimeout = setTimeout(computerMove, timings[Math.floor(Math.random()*4)]);
       return () => clearTimeout(computerMoveTimeout);
     }
   }, [currentPlayer, winner, computerMove]);
@@ -84,16 +96,22 @@ const Game = () => {
 
   const resetGame = () => {
     setTiles(Array(9).fill(''));
-    setCurrentPlayer('X');
+    if (start === 'Computer'){
+      setCurrentPlayer("O")
+    }else{
+      setCurrentPlayer('X')
+    }
     setWinner(null);
   };
 
   return (
     <div className='partition'>
       <div className='left'>
-        <Controls/>
+        <ControlsDifficulty
+          difficulty={difficulty} 
+          setDifficulty={setDifficulty}
+          resetGame={resetGame} />
       </div>
-
       <div className='center'>
           <State currentPlayer={currentPlayer} winner={winner} />
         <div className="grid">
@@ -103,7 +121,12 @@ const Game = () => {
         </div>
           <Rstbtn  resetGame={resetGame} />
       </div>
-
+      <div className='right'>
+        <ControlsStarting
+          start={start} 
+          setStart={setStart}
+          resetGame={resetGame} />
+      </div>
     </div>
   );
 };
